@@ -1,13 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./store/store.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router components
+import Success from "./component/Success/index.js";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Define your routes
+const routes = (
+  <Routes>
+    <Route path="/" element={<App />} />
+    <Route path="/success" element={<Success />}></Route>
+  </Routes>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>{routes}</Router>
+    </Provider>
   </React.StrictMode>
 );
 
