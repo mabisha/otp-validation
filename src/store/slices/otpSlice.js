@@ -8,7 +8,6 @@ export const validateOtp = createAsyncThunk("otp/validate", async (otp) => {
     console.log(data, "data");
     return data;
   } catch (error) {
-    console.log("Error validating OTP2:", error);
     return error.response.data;
   }
 });
