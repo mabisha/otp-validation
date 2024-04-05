@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseURL = process.env.API_URL;
 export const validateOtp = createAsyncThunk("otp/validate", async (otp) => {
   try {
     const response = await axios.post(
