@@ -6,7 +6,7 @@ import { validateOtp } from "../../store/slices/otpSlice";
 import { useNavigate } from "react-router-dom";
 import { handlePaste } from "../../container/validation.utils";
 
-const OtpForm = ({ numberOfOtps, otp, setOtp }) => {
+const OtpForm = ({ numberOfOtps, otp, setOtp, setError }) => {
   const [otpErrors, setOtpErrors] = useState(
     new Array(numberOfOtps).fill(false)
   );
@@ -55,7 +55,7 @@ const OtpForm = ({ numberOfOtps, otp, setOtp }) => {
     }
   };
   const handlePasteEvent = (event) => {
-    handlePaste(event, numberOfOtps, setOtp);
+    handlePaste(event, numberOfOtps, setOtp, setError);
   };
   return (
     <>
@@ -127,6 +127,7 @@ function Validation() {
             numberOfOtps={numberOfOtps}
             otp={otp}
             setOtp={setOtp}
+            setError={setError}
           ></OtpForm>
         </Grid>
         <Grid container justifyContent="center" alignItems="center">
