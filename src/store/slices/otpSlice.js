@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const baseURL = "https://validation-api-xlt2.onrender.com";
 export const validateOtp = createAsyncThunk("otp/validate", async (otp) => {
   try {
-    const response = await axios.post(
-      "https://validation-api-xlt2.onrender.com" + "/api/validate_otp",
-      otp
-    );
+    const response = await axios.post(baseURL + "/api/validate_otp", otp);
     const data = response.data;
     console.log(data, "data");
     return data;
