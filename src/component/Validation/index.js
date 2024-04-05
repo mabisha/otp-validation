@@ -4,6 +4,7 @@ import styles from "./validation.module.css";
 import { useDispatch } from "react-redux";
 import { validateOtp } from "../../store/slices/otpSlice";
 import { useNavigate } from "react-router-dom";
+import { handlePaste } from "../../container/validation.utils";
 
 const OtpForm = ({ numberOfOtps, otp, setOtp }) => {
   const [otpErrors, setOtpErrors] = useState(
@@ -53,14 +54,8 @@ const OtpForm = ({ numberOfOtps, otp, setOtp }) => {
       inputRef.current[index + 1].focus();
     }
   };
-  const handlePaste = (event) => {
-    event.preventDefault();
-    const pastedText = event.clipboardData.getData("text");
-    if (pastedText.length !== numberOfOtps) {
-      return;
-    }
-    const newOtp = pastedText.split("");
-    setOtp(newOtp);
+  const handlePasteEvent = (event) => {
+    handlePaste(event, numberOfOtps, setOtp);
   };
   return (
     <>
@@ -82,7 +77,7 @@ const OtpForm = ({ numberOfOtps, otp, setOtp }) => {
             }}
             onChange={(event) => handleChange(event, index)}
             onKeyDown={(event) => handleBack(event, index)}
-            onPaste={handlePaste}
+            onPaste={handlePasteEvent}
             maxLength={1}
           />
         </Grid>
