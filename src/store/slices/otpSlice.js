@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+require("dotenv").config();
 import axios from "axios";
 const baseURL = process.env.API_URL;
 export const validateOtp = createAsyncThunk("otp/validate", async (otp) => {
