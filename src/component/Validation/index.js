@@ -89,12 +89,13 @@ function Validation() {
   const numberOfOtps = 6;
   const [otp, setOtp] = useState(new Array(numberOfOtps).fill(""));
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     const response = await dispatch(
       validateOtp({ otp: otp.join("") })
     ).unwrap();
@@ -107,6 +108,7 @@ function Validation() {
     } else {
       setError("Something went wrong");
     }
+    setLoading(false);
   };
   return (
     <Box
@@ -143,6 +145,11 @@ function Validation() {
           </Button>
         </Grid>
       </form>
+      {loading && (
+        <Typography variant="h5" style={{ fontSize: "12px", color: "#100249" }}>
+          Loading...
+        </Typography>
+      )}
       {error && (
         <Typography variant="h5" style={{ fontSize: "12px", color: "red" }}>
           {error}
