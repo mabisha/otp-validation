@@ -109,6 +109,9 @@ function Validation() {
       setError("Something went wrong");
     }
     setLoading(false);
+    setTimeout(() => {
+      setError("");
+    }, 5000); // 10000 milliseconds = 10 second
   };
   return (
     <Box
